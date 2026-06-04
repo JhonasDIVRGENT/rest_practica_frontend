@@ -69,8 +69,13 @@ export default function PokemonForm({ mode = "create", initialPokemon, onSubmit,
             value={form.imagen_url}
             onChange={handleChange}
             placeholder="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
-            required
+            required={mode !== "edit"}
+            readOnly={mode === "edit"}
+            aria-readonly={mode === "edit"}
           />
+          {mode === "edit" && (
+            <small className="muted">La imagen proviene de la API y no puede modificarse aquí.</small>
+          )}
         </label>
         <label className="wide">
           Descripción
